@@ -4,10 +4,13 @@ import { useState } from "react";
 
 function App() {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  console.log(isModalOpened);
+  const onClose = () => {
+    setIsModalOpened(false)
+  }
+  
   return (
     <div>
-      <h1>Hey</h1>
+      <h1>React Portal</h1>
       <button
         onClick={() => {
           setIsModalOpened(true);
@@ -15,19 +18,10 @@ function App() {
       >
         Open Modal
       </button>
-      <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
-        <form onSubmit={() => setIsModalOpened(false)} className="login-form">
-          <section>
-            <label>Email</label>
-            <input type="email" />
-          </section>
-          <section>
-            <label>Password</label>
-            <input type="password" />
-          </section>
-          <button>Sign In</button>
-        </form>
-      </Modal>
+      <Modal isOpened={isModalOpened} onClose={onClose} onConfirm={onClose}
+        title="Lorem ipsum dolor sit amet"
+        message="consectetur adipiscing elit. Nulla massa risus, fermentum vel mauris sit amet, posuere dictum sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed sed felis eu mi porttitor porttitor. Mauris tempor mattis ultricies. Morbi pulvinar erat pretium dolor egestas, vitae dignissim enim ultricies. Suspendisse potenti. Aliquam vel purus risus."
+      />
     </div>
   );
 }
